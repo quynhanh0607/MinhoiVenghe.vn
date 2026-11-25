@@ -1,0 +1,720 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Mình ơi Về nghe - Dự án Văn hóa Thanh sắc Nam Bộ</title>
+<!-- Google Fonts: Playfair Display / EB Garamond & Be Vietnam Pro -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cream: '#fffaf3',
+              darkBg: '#212b1d',
+              charcoal: '#1c1b18',
+              pink: '#e83e8c',
+              pinkHover: '#d62a78',
+              green: '#558b2f',
+              lightGreen: '#a9cf46',
+              gold: '#f59e0b',
+              amber: '#f2bd1d',
+              brown: '#4e342e',
+              deepBrown: '#362214'
+            }
+          },
+          boxShadow: {
+            'card': '0 8px 24px -4px rgba(0, 0, 0, 0.12)',
+            'floating': '0 12px 30px -6px rgba(0, 0, 0, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="card-flip-3d">
+    /* 3D Flip Card Effect for Mobile Interaction */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .card-inner {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-inner.is-flipped {
+      transform: rotateY(180deg);
+    }
+  </style>
+<style data-purpose="mobile-enhancements">
+    /* Subtle touch highlight disable for native iOS feel */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Custom scroll indicator styling */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c2b59b;
+      border-radius: 4px;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-[#fff9f1] text-[#2c2b29] font-sans antialiased overflow-x-hidden selection:bg-[#e83e8c] selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-[#fffaf3]/95 backdrop-blur-md border-b border-[#ebdcc9] transition-all duration-300 shadow-sm" data-purpose="mobile-navbar">
+<div class="px-4 py-2.5 flex items-center justify-between">
+<!-- Brand Logo / Identity -->
+<a aria-label="Trang chủ Mình ơi Về nghe" class="flex items-center gap-2" href="#hero">
+<img alt="Logo Mình ơi Về nghe" class="h-9 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCddaWFXC18S_-DMr_ZdbD9P4yY_ZOQgp7crzlVnSp1Gde1ngJSzyx3eoxmKGE0pqLVtcYU-FfHrTQlVaztjTDxPejF74C-c_67tLisDPArYmMBfFdk_IAP4JggWZ3-jLAK_4J1njrjgLBGmARqoOD42lfhSnVNwZaU83ir7Nr_uGyrEFd63e-is9jwUvJ-Rjxf50VlZC3EPob5f5sSgYcnj3s8sXrJf2elGYseHHOqtGcNANiM_UccWQ">
+<span class="font-serif font-bold text-base text-[#243521] tracking-tight leading-none hidden xs:inline-block">Mình ơi Về nghe</span>
+</a>
+<!-- Quick Action Buttons on Mobile Header -->
+<div class="flex items-center gap-2">
+<a class="px-2.5 py-1.5 text-xs font-semibold text-white bg-[#e83e8c] hover:bg-[#d62a78] rounded-full transition-transform active:scale-95 shadow-sm whitespace-nowrap" href="#mini-game">
+          Xé túi mù
+        </a>
+<a class="px-2.5 py-1.5 text-xs font-semibold text-white bg-[#558b2f] hover:bg-[#457224] rounded-full transition-transform active:scale-95 shadow-sm whitespace-nowrap" href="#miss-van-hoa">
+          Miss Văn Hóa
+        </a>
+<!-- Hamburger Menu Toggle Button -->
+<button aria-label="Mở thực đơn" class="p-1.5 text-[#3b4737] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#558b2f]" id="menu-toggle-btn" type="button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path class="hidden" d="M6 18L18 6M6 6l12 12" id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Dropdown Navigation Drawer -->
+<nav class="hidden bg-[#fffaf3] border-b border-[#e5d2bc] px-4 pt-2 pb-5 transition-all duration-300 shadow-lg" id="mobile-nav-menu">
+<ul class="flex flex-col space-y-3 font-medium text-sm text-[#3b4737]">
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#hero">Trang chủ</a></li>
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#y-nghia">Hành trình lan tỏa</a></li>
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#bo-tu-the-bai">Bộ Tứ Thẻ Bài (Lật thẻ)</a></li>
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#bon-cung-bac">Bốn Cung Bậc Di Sản</a></li>
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#ban-do-di-san">Bản đồ Di sản</a></li>
+<li><a class="block py-1 border-b border-[#f3e6d8] hover:text-[#e83e8c]" href="#miss-van-hoa">Miss Văn Hóa</a></li>
+<li><a class="block py-1 hover:text-[#e83e8c]" href="#mini-game">Social Wall &amp; Nhận phẩm</a></li>
+</ul>
+</nav>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative bg-gradient-to-b from-[#212b1d] via-[#2d3a27] to-[#1c2317] text-white pt-8 pb-14 px-4 text-center overflow-hidden" data-purpose="hero-banner" id="hero">
+<!-- Decorative Backdrop Glow -->
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#f59e0b]/20 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Project Pre-Title -->
+<p class="relative z-10 text-[11px] uppercase tracking-[0.25em] text-[#f7d88b] font-medium mb-3">
+        Dự án Văn hóa Thanh Sắc
+      </p>
+<!-- Main Visual Calligraphy Title -->
+<div class="relative z-10 flex justify-center items-center my-2">
+<img alt="Mình ơi Về nghe" class="w-64 max-w-[85%] h-auto drop-shadow-[0_4px_18px_rgba(245,158,11,0.35)] animate-pulse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCddaWFXC18S_-DMr_ZdbD9P4yY_ZOQgp7crzlVnSp1Gde1ngJSzyx3eoxmKGE0pqLVtcYU-FfHrTQlVaztjTDxPejF74C-c_67tLisDPArYmMBfFdk_IAP4JggWZ3-jLAK_4J1njrjgLBGmARqoOD42lfhSnVNwZaU83ir7Nr_uGyrEFd63e-is9jwUvJ-Rjxf50VlZC3EPob5f5sSgYcnj3s8sXrJf2elGYseHHOqtGcNANiM_UccWQ">
+</div>
+<!-- Tagline & Context Description -->
+<div class="relative z-10 max-w-sm mx-auto mt-4 px-2">
+<h1 class="font-serif italic text-lg sm:text-xl text-[#ffebba] leading-snug font-semibold">
+          "Mình ơi Về nghe" – Hành trình lan tỏa vẻ đẹp thanh sắc Nam Bộ.
+        </h1>
+<p class="text-xs text-[#d1dcd0] mt-3 leading-relaxed font-light">
+          Dự án thuộc khuôn khổ môn học: <span class="text-white font-medium">Lịch sử Văn hóa Việt Nam</span> của sinh viên ngành <span class="text-[#f7d88b]">POHE Quản trị Lữ hành</span>, Viện Đào tạo Tiên tiến, Chất lượng cao và POHE, Đại học Kinh tế Quốc dân.
+        </p>
+</div>
+<!-- Hero Call-To-Action Buttons -->
+<div class="relative z-10 mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xs mx-auto">
+<a class="w-full py-2.5 px-5 bg-gradient-to-r from-[#e83e8c] to-[#c2185b] hover:from-[#d62a78] hover:to-[#ad1457] text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-lg active:scale-95 transition" href="#mini-game">
+          Xé Túi Mù Ngay
+        </a>
+<a class="w-full py-2.5 px-5 bg-[#558b2f] hover:bg-[#436f23] text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-lg active:scale-95 transition" href="#bon-cung-bac">
+          Khám Phá Miss Văn Hóa
+        </a>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: QuickStatsBar -->
+<section class="relative z-20 -mt-6 px-4 max-w-md mx-auto" data-purpose="quick-metrics-overview">
+<div class="grid grid-cols-3 gap-2.5">
+<!-- Stat 1: 04 Bộ Tứ Thẻ Bài -->
+<a class="bg-[#fbc02d] text-[#2c2202] rounded-xl p-3 text-center shadow-md flex flex-col items-center justify-center active:scale-95 transition" href="#bo-tu-the-bai">
+<svg class="w-5 h-5 mb-1 text-[#4e3905]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-xl font-black font-serif leading-none">04</span>
+<span class="text-[10px] font-bold uppercase mt-1 leading-tight tracking-tight">Bộ Tứ Thẻ Bài</span>
+</a>
+<!-- Stat 2: 08 Miss Văn Hóa -->
+<a class="bg-[#e91e63] text-white rounded-xl p-3 text-center shadow-md flex flex-col items-center justify-center active:scale-95 transition" href="#miss-van-hoa">
+<svg class="w-5 h-5 mb-1 text-pink-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-xl font-black font-serif leading-none">08</span>
+<span class="text-[10px] font-bold uppercase mt-1 leading-tight tracking-tight">Miss Văn Hóa</span>
+</a>
+<!-- Stat 3: 04 Không Gian Di Sản -->
+<a class="bg-[#689f38] text-white rounded-xl p-3 text-center shadow-md flex flex-col items-center justify-center active:scale-95 transition" href="#ban-do-di-san">
+<svg class="w-5 h-5 mb-1 text-green-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-xl font-black font-serif leading-none">04</span>
+<span class="text-[10px] font-bold uppercase mt-1 leading-tight tracking-tight">Không Gian Di Sản</span>
+</a>
+</div>
+</section>
+<!-- END: QuickStatsBar -->
+<!-- BEGIN: MeaningStatement -->
+<section class="py-10 px-5 max-w-md mx-auto text-center" data-purpose="project-statement" id="y-nghia">
+<div class="bg-white/80 rounded-2xl p-6 border border-[#eddccb] shadow-sm">
+<h2 class="font-serif text-lg font-bold text-[#2d4025] mb-3 leading-snug">
+          Hành trình lan tỏa vẻ đẹp thanh sắc Nam Bộ
+        </h2>
+<div class="w-12 h-0.5 bg-[#e83e8c] mx-auto mb-4 rounded-full"></div>
+<p class="text-xs text-[#524a42] leading-relaxed">
+<span class="font-semibold text-[#e83e8c]">“Mình ơi Về nghe”</span> là nhịp cầu thế hệ mang văn hóa dân gian miền tây sông nước bước vào đời sống của người trẻ qua lăng kính đầy mới mẻ và hiện đại. Từ khoảnh khắc tò mò <span class="font-medium text-[#558b2f]">"xé túi mù"</span> đến hành trình sách balo đến khám phá miền sông nước đậm đà bản sắc. Hành trình ấy không chỉ là trải nghiệm mà còn khơi dậy trong mỗi chúng ta niềm tự hào, tình yêu quê hương và mong muốn được tiếp nối những giá trị bản sắc truyền thống giữa dòng chảy thời đại mới.
+        </p>
+</div>
+</section>
+<!-- END: MeaningStatement -->
+<!-- BEGIN: FlipCardsSection -->
+<section class="py-8 px-4 bg-gradient-to-b from-[#fbf5ea] to-[#fff9f1] border-y border-[#eddcca]" data-purpose="heritage-flip-cards" id="bo-tu-the-bai">
+<div class="max-w-md mx-auto text-center mb-6">
+<p class="text-[10px] uppercase font-bold tracking-widest text-[#a8742b]">Bộ Tứ Thẻ Bài</p>
+<h2 class="font-serif italic text-2xl font-bold text-[#d81b60] mt-1">“Tiếng lòng Mình ơi”</h2>
+<p class="text-xs text-[#6e6357] mt-1">Bấm vào từng thẻ bài để chiêm ngưỡng một trong <span class="text-[#845014] font-semibold">4 bí ẩn Thanh Sắc!</span></p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-[#edd7c2] rounded-full text-[10px] text-[#e83e8c] shadow-xs">
+<svg class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Chạm thẻ để lật xem bí mật mặt sau
+        </div>
+</div>
+<!-- 2x2 Interactive Grid for Mobile Viewports -->
+<div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
+<!-- CARD 1: TRI ÂM (Đờn ca tài tử) -->
+<div class="perspective-1000 h-[280px]" data-purpose="card-container">
+<div class="card-inner relative w-full h-full transform-style-3d cursor-pointer rounded-2xl shadow-card is-flipped" onclick="this.classList.toggle('is-flipped')" tabindex="0" role="button" aria-label="Lật thẻ bài để xem chi tiết">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden border-2 border-[#8bc34a]/60 bg-[#eef7e6]">
+<img alt="Thẻ bài Tri Âm" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrUVZfVR0fvFExvgWBlgYl3IqFOZfIXwM4SEwIVajp3I-mFjSky_RggoGoou2dIfzUAeK6eoLhPurJ4pYqeH0jshxgss3Kmeo-PXVZ2hyQaBMnxbqta9k0VqaMw-iGOtLpUv1ErUvTNzf40zqvcgkVXawTVfPKpx20deQUr7pr6KYzPU8YjYnrVd2wCfVfqnSy6h7NTDlZrcCw0v3zrC8yjOfnx3Uy88e6MwGuxT2rcxgu1Z6LdoDG1Q">
+<div class="absolute bottom-2 left-2 right-2 text-center bg-black/40 backdrop-blur-xs rounded-lg py-1">
+<span class="text-[10px] font-medium text-white flex items-center justify-center gap-1">
+                  Chạm để lật ↺
+                </span>
+</div>
+</div>
+<!-- Back Face (Detail Content) -->
+<div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl p-3 flex flex-col justify-between bg-gradient-to-b from-[#f1f8e9] to-[#dcedc8] border-2 border-[#7cb342] text-left">
+<div>
+<span class="text-[9px] font-bold text-[#33691e] uppercase tracking-wider block">Thẻ Đàn</span>
+<h3 class="font-serif italic text-base font-bold text-[#1b5e20] leading-tight mt-0.5">"Tri Âm"</h3>
+<p class="text-[11px] font-semibold text-[#33691e] mt-1">Đờn ca tài tử</p>
+<p class="text-[10px] text-[#424242] mt-1 leading-snug line-clamp-4">
+                  Di sản văn hóa phi vật thể của nhân loại mang đậm tính ngẫu hứng miệt vườn qua tiếng đờn kìm, đờn tranh và bài ca mộc mạc.
+                </p>
+</div>
+<a class="text-center w-full py-1.5 bg-[#558b2f] hover:bg-[#33691e] text-white text-[10px] font-bold rounded-lg shadow-sm" href="#the-dan-tri-am" onclick="event.stopPropagation();">
+                Chi tiết Cung Bậc ↓
+              </a>
+</div>
+</div>
+</div>
+<!-- CARD 2: TÌNH QUÂN (Vọng Cổ) -->
+<div class="perspective-1000 h-[280px]" data-purpose="card-container">
+<div class="card-inner relative w-full h-full transform-style-3d cursor-pointer rounded-2xl shadow-card" onclick="this.classList.toggle('is-flipped')" tabindex="0" role="button" aria-label="Lật thẻ bài để xem chi tiết">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden border-2 border-[#f06292]/60 bg-[#fdebf3]">
+<img alt="Thẻ bài Tình Quân" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrLT-_VDzFR0fgfST2KBqrZ9FBO52lQWde38OzLUX_un5XWel7gZHsSD2FCSIl5WoOBEhtcj6MGURD-Ty4mPJc9zIws6QHvwXhl7XBwA8XOmTtaoQQq9jgALR7S679WV1d163lC0HS_yIxyho61UvaIouejHGiI5m1Gq1C8Q45Vs8B0XOrb8rBOybqSVQYiVxM9wZea6N1b26SCXKGpAE7sjPf-uCOh55C87kpZ2ea-LKr8tV6rzlCmw">
+<div class="absolute bottom-2 left-2 right-2 text-center bg-black/40 backdrop-blur-xs rounded-lg py-1">
+<span class="text-[10px] font-medium text-white flex items-center justify-center gap-1">
+                  Chạm để lật ↺
+                </span>
+</div>
+</div>
+<!-- Back Face (Detail Content) -->
+<div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl p-3 flex flex-col justify-between bg-gradient-to-b from-[#fce4ec] to-[#f8bbd0] border-2 border-[#e91e63] text-left">
+<div>
+<span class="text-[9px] font-bold text-[#880e4f] uppercase tracking-wider block">Thẻ Ca</span>
+<h3 class="font-serif italic text-base font-bold text-[#ad1457] leading-tight mt-0.5">"Tình Quân"</h3>
+<p class="text-[11px] font-semibold text-[#880e4f] mt-1">Vọng cổ phương Nam</p>
+<p class="text-[10px] text-[#424242] mt-1 leading-snug line-clamp-4">
+                  Khúc ca tâm tình khởi nguồn từ bản Dạ cổ hoài lang (1919) của cố nhạc sĩ Cao Văn Lầu, kết tinh tiếng lòng thổn thức thủy chung miền sông nước.
+                </p>
+</div>
+<a class="text-center w-full py-1.5 bg-[#e91e63] hover:bg-[#c2185b] text-white text-[10px] font-bold rounded-lg shadow-sm" href="#the-ca-tinh-quan" onclick="event.stopPropagation();">
+                Chi tiết Cung Bậc ↓
+              </a>
+</div>
+</div>
+</div>
+<!-- CARD 3: NGUYỆN CẦU (Múa Bóng Rỗi) -->
+<div class="perspective-1000 h-[280px]" data-purpose="card-container">
+<div class="card-inner relative w-full h-full transform-style-3d cursor-pointer rounded-2xl shadow-card" onclick="this.classList.toggle('is-flipped')" tabindex="0" role="button" aria-label="Lật thẻ bài để xem chi tiết">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden border-2 border-[#fbc02d]/60 bg-[#fffde7]">
+<img alt="Thẻ bài Nguyện Cầu" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIjTcJTzwlucW-zWmqt-KuXL5zF72s4BiqrkV5K-tt2JoLcw9a9r_GFlFkyjt2qmAQRGTrs3xA7pTZnREeXjDI5wjMXsfa0W5UbBWZ2nQ2o1bllLjU0OxwbxocUtyKWU82W9W2gl_CwRYJGXzHgXXWxoI0U2Fovn49tLEa_uLT4HdvsmS1RDwK_IqRjGtws7VHBRWjjRIs02-7faZ82TKnLq9mmxLuV97WX17YWOd71FejkiA-sDjslg">
+<div class="absolute bottom-2 left-2 right-2 text-center bg-black/40 backdrop-blur-xs rounded-lg py-1">
+<span class="text-[10px] font-medium text-white flex items-center justify-center gap-1">
+                  Chạm để lật ↺
+                </span>
+</div>
+</div>
+<!-- Back Face (Detail Content) -->
+<div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl p-3 flex flex-col justify-between bg-gradient-to-b from-[#fffde7] to-[#fff59d] border-2 border-[#fbc02d] text-left">
+<div>
+<span class="text-[9px] font-bold text-[#f57f17] uppercase tracking-wider block">Thẻ Múa</span>
+<h3 class="font-serif italic text-base font-bold text-[#e65100] leading-tight mt-0.5">"Nguyện Cầu"</h3>
+<p class="text-[11px] font-semibold text-[#e65100] mt-1">Múa Bóng rỗi</p>
+<p class="text-[10px] text-[#424242] mt-1 leading-snug line-clamp-4">
+                  Nghi thức dâng bông thăng bằng mâm vàng độc đáo, biểu trưng cho lòng thành kính thần linh cầu cho mưa thuận gió hòa, hào sảng phương Nam.
+                </p>
+</div>
+<a class="text-center w-full py-1.5 bg-[#fbc02d] hover:bg-[#f57f17] text-[#2c2202] text-[10px] font-bold rounded-lg shadow-sm" href="#the-mua-nguyen-cau" onclick="event.stopPropagation();">
+                Chi tiết Cung Bậc ↓
+              </a>
+</div>
+</div>
+</div>
+<!-- CARD 4: NGHĨA KHÍ (Hát Bội) -->
+<div class="perspective-1000 h-[280px]" data-purpose="card-container">
+<div class="card-inner relative w-full h-full transform-style-3d cursor-pointer rounded-2xl shadow-card" onclick="this.classList.toggle('is-flipped')" tabindex="0" role="button" aria-label="Lật thẻ bài để xem chi tiết">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden border-2 border-[#8d6e63]/60 bg-[#efebe9]">
+<img alt="Thẻ bài Nghĩa Khí" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL27-PD0B0fqn2-Ui_-fPujTyLn5SS54AQl8RLVt720fNyj-qpLfhv-ENQJY3ss9Ok3LtKtLtCJig4qkSnF1ihtFLQI9o9gLAtGViPxkk7GagxaAhhs0SrIXwdD_-rPmUL1JLCCDjs6WGGt6gdPdE-7QrfTu_3kvUS5SM1Xk3fAc8yzJO1umjmP8yAaH8xhKqirOI1e8ZBlSo6rI3DDM1CS6QS-UDImvsvMHswj1U5aSv94h1w04oz8A">
+<div class="absolute bottom-2 left-2 right-2 text-center bg-black/40 backdrop-blur-xs rounded-lg py-1">
+<span class="text-[10px] font-medium text-white flex items-center justify-center gap-1">
+                  Chạm để lật ↺
+                </span>
+</div>
+</div>
+<!-- Back Face (Detail Content) -->
+<div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl p-3 flex flex-col justify-between bg-gradient-to-b from-[#efebe9] to-[#d7ccc8] border-2 border-[#6d4c41] text-left">
+<div>
+<span class="text-[9px] font-bold text-[#4e342e] uppercase tracking-wider block">Thẻ Kịch</span>
+<h3 class="font-serif italic text-base font-bold text-[#3e2723] leading-tight mt-0.5">"Nghĩa Khí"</h3>
+<p class="text-[11px] font-semibold text-[#4e342e] mt-1">Hát bội Nam Bộ</p>
+<p class="text-[10px] text-[#424242] mt-1 leading-snug line-clamp-4">
+                  Sân khấu ước lệ hào hùng, phân định trung - nịnh qua mật mã vẽ mặt trang điểm và vũ đạo trượng phu mẫu mực từng được hoàng gia bảo trợ.
+                </p>
+</div>
+<a class="text-center w-full py-1.5 bg-[#5d4037] hover:bg-[#3e2723] text-white text-[10px] font-bold rounded-lg shadow-sm" href="#the-kich-nghia-khi" onclick="event.stopPropagation();">
+                Chi tiết Cung Bậc ↓
+              </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FlipCardsSection -->
+<!-- BEGIN: FourHeritageDetails -->
+<section class="py-10 px-4 max-w-md mx-auto" data-purpose="four-heritage-pillars" id="bon-cung-bac">
+<div class="text-center mb-6">
+<p class="text-[10px] uppercase font-bold tracking-widest text-[#795548]">Khám Phá Di Sản Nghệ Thuật</p>
+<h2 class="font-serif text-2xl font-bold text-[#2e3d23] mt-1">Bốn Cung Bậc Di Sản Nam Bộ</h2>
+<div class="w-16 h-0.5 bg-[#8bc34a] mx-auto mt-2 rounded-full"></div>
+</div>
+<div class="space-y-6">
+<!-- Pillar 1: Thẻ Đàn "Tri Âm" -->
+<article class="bg-[#bfd874] rounded-2xl p-4 shadow-sm border border-[#a2bf56]" data-purpose="pillar-dan" id="the-dan-tri-am">
+<div class="flex items-center justify-between mb-3 border-b border-[#a3be57] pb-2">
+<div>
+<span class="text-xs font-semibold text-[#27460c]">Thẻ Đàn</span>
+<h3 class="font-serif italic text-xl font-bold text-[#1e3808]">" Tri Âm "</h3>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#ffffff]/80 text-[#2a4d0c] shadow-xs">
+              ÂM NHẠC TRUYỀN THỐNG
+            </span>
+</div>
+<div class="space-y-2 text-xs text-[#283811] leading-relaxed">
+<div>
+<h4 class="font-bold text-[#1b3009]">Đờn ca tài tử</h4>
+<p>Là di sản văn hóa <strong class="underline decoration-[#558b2f]">phi vật thể</strong> đại diện của nhân loại, mang đậm tính ngẫu hứng qua sự kết hợp giữa âm nhạc (đàn kìm, đàn tranh, đàn cò, guitar phím lõm) và ca hát, gắn liền với đời sống miệt vườn và sinh hoạt cộng đồng.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#1b3009]">Quá trình hình thành</h4>
+<p>Ra đời vào <strong>cuối thế kỷ 19</strong> từ sự giao thoa giữa Nhã nhạc cung đình Huế và âm nhạc dân gian Nam Bộ. Loại hình này được ba đại nhạc sư <strong>Nguyễn Quang Đại, Trần Quang Quờn</strong> và <strong>Lê Tài Khị</strong> mang vào phương Nam khai phá, canh tân và phát triển.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#1b3009]">Hơi</h4>
+<p>Là <strong class="text-[#1a3809]">linh hồn</strong> ký thác trọn vẹn mọi rung cảm của cõi lòng:<br>
+<span class="font-medium italic">Hơi Bắc - Hơi Nam - Hơi Oán - Hơi Hạ</span></p>
+</div>
+</div>
+<!-- Representative Image -->
+<div class="mt-3.5 rounded-xl overflow-hidden shadow-inner border border-white/40">
+<img alt="Nghệ nhân đờn ca tài tử" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn7mPq3QQkiNbx8FiL2xZVWjsyalbLq71eDZXMmM7RjG3qMgMoyJsdoyHXTihX2ctxn7NbEvxA1piFdd4Dam7IYCU8UJldHtqigIDjCsK7jxruY4MJGpdlN-HcuEb1xpjrHmhxZdIgdR0NegAkldkT5kjHctMmBgWgTW_LcvTluPyNEeVpG2cpBVsrPLHDTCXgASddz5OxeZRXXYY3eFogSb3doG0kZnCDp_vsMU6Cuj0oRf6OXX1HTQ">
+</div>
+</article>
+<!-- Pillar 2: Thẻ Ca "Tình Quân" -->
+<article class="bg-[#f25c9f] text-white rounded-2xl p-4 shadow-sm border border-[#df4187]" data-purpose="pillar-ca" id="the-ca-tinh-quan">
+<div class="flex items-center justify-between mb-3 border-b border-[#f472ac] pb-2">
+<div>
+<span class="text-xs font-semibold text-pink-100">Thẻ Ca</span>
+<h3 class="font-serif italic text-xl font-bold text-white">" Tình Quân "</h3>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white text-[#d81b60] shadow-xs">
+              ĐIỆU VỌNG CỔ SÔNG NƯỚC
+            </span>
+</div>
+<div class="space-y-2 text-xs text-pink-50 leading-relaxed">
+<div>
+<h4 class="font-bold text-white">Vọng cổ</h4>
+<p>Là thể điệu cốt lõi, được ví như <strong class="text-white font-extrabold underline">"bài ca vua"</strong> của đờn ca tài tử và sân khấu cải lương. Giai điệu mang âm hưởng sâu lắng, truyền tải tình nghĩa thủy chung, son sắt của người dân miền sông nước.</p>
+</div>
+<div>
+<h4 class="font-bold text-white">Quá trình hình thành</h4>
+<p>Khởi nguồn từ tác phẩm <strong class="text-yellow-200">"Dạ cổ hoài lang"</strong> do cố nhạc sĩ Cao Văn Lầu sáng tác năm 1919 tại Bạc Liêu. Trải qua thời gian, điệu nhạc được mở nhịp dần (từ nhịp 2 lên 4, 8, 16 và đạt đỉnh cao ở nhịp 32) để mở rộng không gian cho nghệ sĩ tự do biểu đạt cảm xúc, nhấn nhá.</p>
+</div>
+<div>
+<h4 class="font-bold text-white">Nhịp</h4>
+<p>Để trở thành một khúc ca dài hơi, luyến láy và dạt dào cảm xúc như hôm nay, bản vọng cổ đã trải qua một <strong class="text-white font-bold">hành trình kéo dài</strong> khuôn nhạc từng bước rất thú vị.</p>
+</div>
+</div>
+<!-- Representative Historical Image -->
+<div class="mt-3.5 rounded-xl overflow-hidden shadow-inner border border-white/30">
+<img alt="Hình ảnh cố nghệ nhân diễn xướng vọng cổ" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALYMGo07ZFTfLSLguDxIaYIdfeudq0VDsL9Kr9h3SrqoGdckLYnFQQtsuJEEIkEZ_VlEJj4OMT8XfyBLgpGC1IMSB7Q9e24Q1NTNG3sTRMmgvfWYfQMveB6R1XrAr-Hut-PGifbO-ZTnySBFwX5IhIUZ7PXA-s5xov23gzwfWN4I_D1X3MZP0BHwQ0_YqBSfcTO2Bd5ZFJuWQta5vRok-U1sZ4SHrS8a3Px8qgDqHz8W1b4Tuq1D5zrA">
+</div>
+</article>
+<!-- Pillar 3: Thẻ Múa "Nguyện Cầu" -->
+<article class="bg-[#f4bf2c] text-[#2b2103] rounded-2xl p-4 shadow-sm border border-[#e1ad1d]" data-purpose="pillar-mua" id="the-mua-nguyen-cau">
+<div class="flex items-center justify-between mb-3 border-b border-[#e1ad1d] pb-2">
+<div>
+<span class="text-xs font-semibold text-[#543b01]">Thẻ Múa</span>
+<h3 class="font-serif italic text-xl font-bold text-[#3d2900]">" Nguyện Cầu "</h3>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#3d2900] text-[#fbc02d] shadow-xs">
+              MÚA BÓNG RỖI &amp; TÍN NGƯỠNG
+            </span>
+</div>
+<div class="space-y-2 text-xs text-[#3a2802] leading-relaxed">
+<div>
+<h4 class="font-bold text-[#2a1d00]">Múa Bóng rỗi</h4>
+<p>Là loại hình <strong class="underline decoration-[#e65100]">diễn xướng kết hợp</strong> giữa hát, nhạc lễ và các điệu múa đòi hỏi sự khéo léo, thường xuất hiện trong các lễ hội dân gian như vía Bà Chúa Xứ, thờ Ngũ Hành Nương Nương.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#2a1d00]">Quá trình hình thành</h4>
+<p>Hình thành từ quá trình <strong class="text-[#201500]">giao lưu văn hóa Việt – Chăm</strong>, gắn liền mật thiết với tín ngưỡng thờ Mẫu. Các điệu múa dâng bông, dâng lộc được sáng tạo như một hình thức cầu nguyện thần linh ban cho mùa màng thuận hòa, bình an và sung túc.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#2a1d00]">Mâm vàng</h4>
+<p>Là <strong class="font-bold">lễ vật</strong> trang trọng trong tín ngưỡng dân gian Nam Bộ, gắn liền với nghệ thuật múa bóng rỗi độc đáo của các nghệ nhân phương Nam.</p>
+</div>
+</div>
+<!-- Representative Image -->
+<div class="mt-3.5 rounded-xl overflow-hidden shadow-inner border border-white/40">
+<img alt="Điệu Múa Bóng Rỗi Thờ Mẫu" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeeT53V4tZ_ZisYC4eY0l8wx5M-exhse-tBlN_Lm1BOqRvH4j1ngpr55j6bjVf1n6Nn05FvTGmfTaexJ8ELOeLnRKv-wOEjmL2Rl4hdurFYIc12fK5B0LbIqHLnDhjAHipt5oVXmGmjowIwi9qvRQbqmlATHQxmz5_QQh9EmcaEzq_tr-ogQh_emuo3GBbXQIDmw4zYCubhxxAJjdFWLoCVggknCeNuEvJ_KxPS_d39Lc_PHUazZldvg">
+</div>
+</article>
+<!-- Pillar 4: Thẻ Kịch "Nghĩa Khí" -->
+<article class="bg-[#4d360f] text-white rounded-2xl p-4 shadow-sm border border-[#3e2b0b]" data-purpose="pillar-kich" id="the-kich-nghia-khi">
+<div class="flex items-center justify-between mb-3 border-b border-[#634717] pb-2">
+<div>
+<span class="text-xs font-semibold text-[#e0cfb8]">Thẻ Kịch</span>
+<h3 class="font-serif italic text-xl font-bold text-[#ffebba]">" Nghĩa Khí "</h3>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#e83e8c] text-white shadow-xs">
+              SÂN KHẤU TUỒNG CỔ
+            </span>
+</div>
+<div class="space-y-2 text-xs text-[#e5d9c8] leading-relaxed">
+<div>
+<h4 class="font-bold text-[#ffebba]">Hát bội</h4>
+<p>Nghệ thuật sân khấu <strong class="underline decoration-[#e83e8c]">cổ truyền</strong> mang tính ước lệ cao, là sự tổng hòa của văn học, âm nhạc, vũ đạo, võ thuật và nghệ thuật <strong class="text-[#ffc107]">hóa trang mặt nạ</strong> mang tính biểu tượng (mặt đỏ tượng trưng cho trung thần, mặt trắng là gian thần).</p>
+</div>
+<div>
+<h4 class="font-bold text-[#ffebba]">Quá trình hình thành</h4>
+<p>Phát triển rực rỡ và đạt đến đỉnh cao dưới triều Nguyễn, được xem là <strong class="text-yellow-300">quốc túy bảo trợ bởi hoàng gia</strong>. Hát bội được nâng tầm nghệ thuật sâu sắc cả về kịch bản lẫn biểu diễn nhờ công lao to lớn của danh nhân <strong>Đào Tấn</strong> – người được tôn là hậu tổ của nghề.</p>
+</div>
+<div>
+<h4 class="font-bold text-[#ffebba]">Mặt nạ</h4>
+<p>Màu sắc mặt nạ trong cải lương tuồng cổ là "bản lý lịch tính cách" giúp khán giả nhận diện nhanh chóng phẩm chất nhân vật. Các gam màu <strong class="text-white">đỏ, trắng, đen và xanh</strong> đại diện rõ nét cho các tầng lớp trung, nịnh, bộc trực hay tà ác.</p>
+</div>
+</div>
+<!-- Representative Image -->
+<div class="mt-3.5 rounded-xl overflow-hidden shadow-inner border border-white/20">
+<img alt="Diễn viên Hát Bội truyền thống tuồng cổ" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuVdh417CvN9IManf7iutxxAUXMG3pbybESRn23eCMS1KIb-3wCR6eMYGIzisdqVp_HAYFfn_2h3kMIfyEEIyeFFDPl_JZ_QepXSo1D7oYQ2nzxqqEyrbfNhxB_c6SuuC560wc4OvuzFHe_BVyHMdv32qRlQzrIH9Lf4lIEe9RMkv47aIqunetBlVP65ysXhvVRwir3-SH-OpOwQq7csWSL7tFVVdrvIqYs93xq9zXoWEgRUX5asEoDw">
+</div>
+</article>
+</div>
+</section>
+<!-- END: FourHeritageDetails -->
+<!-- BEGIN: HeritageMapLocations -->
+<section class="py-10 px-4 bg-white border-y border-[#ecdcc8]" data-purpose="heritage-map" id="ban-do-di-san">
+<div class="max-w-md mx-auto text-center mb-6">
+<h2 class="font-serif text-2xl font-bold text-[#1f2d18]">Bản đồ Di sản</h2>
+<p class="text-xs text-[#61594f] mt-1.5 leading-relaxed">
+          Theo chân chúng tôi về với những vùng đất rực rỡ nắng gió Nam Bộ để chạm tay vào đời sống chân thực của các nghệ nhân gìn giữ lửa nghề.
+        </p>
+<div class="w-12 h-0.5 bg-[#e83e8c] mx-auto mt-3 rounded-full"></div>
+</div>
+<!-- Single Column Mobile Card Flow -->
+<div class="space-y-6 max-w-md mx-auto">
+<!-- Location 1: Bạc Liêu -->
+<div class="bg-[#fffbf5] rounded-2xl overflow-hidden border border-[#eedecb] shadow-sm flex flex-col" data-purpose="location-card">
+<div class="h-44 w-full overflow-hidden">
+<img alt="Không gian di sản Bạc Liêu" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjY8U5ZNkeFGSU_SMnW8-8d8sVMq8EFrd-WK6BdyePX3n2nKfJbnXf0Mi_PdWKEp-YV2bR65dWDMXFLoX8Tbz8W0RMvvivfIcAC61sSZhE10KfhR088Qh2mNFojYgKnav3Sgud0_0kA6fGHZPyT1BfNXZhNgc20XhVvpdc8md5cMFT2i7FK7KcTUvfmaNMjgRnctNTSQhpsWSBh6grYPllX2D_8ndiPOKKmZ2WOarlN5tIAo1W9B2ihQ">
+</div>
+<div class="p-4">
+<span class="text-[9px] uppercase font-bold tracking-widest text-[#e83e8c] block mb-1">Không gian di sản 01</span>
+<h3 class="font-serif text-lg font-bold text-[#1f2a1b]">Bạc Liêu</h3>
+<p class="text-xs text-[#4d463e] mt-1 leading-relaxed">
+              Là quê hương của cố nhạc sĩ Cao Văn Lầu và bản Dạ cổ hoài lang. Nơi đây nổi bật với hơn <strong class="text-[#1f2a1b]">150 câu lạc bộ đờn ca tài tử</strong>, Khu lưu niệm nghệ thuật đặc sắc và công trình kiến trúc nổi tiếng Nhà Công tử Bạc Liêu.
+            </p>
+</div>
+</div>
+<!-- Location 2: Mỹ Tho -->
+<div class="bg-[#fffbf5] rounded-2xl overflow-hidden border border-[#eedecb] shadow-sm flex flex-col" data-purpose="location-card">
+<div class="h-44 w-full overflow-hidden">
+<img alt="Mỹ Tho cù lao Thới Sơn" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaihGlPrjV5RJ4UwoWFim0puf414G5VI2pbZmBE9P20ML_XVSIfkkZVVUlDnWIiT-lwjI7-4PG1IF9hjrNaMLibDzpDYJ9iCGqe5hxDZrrgkTuSPLD_QiBByTHo1vVnrX-cWnkXkDeXAz-nRODQMmXltwfk2KEdEiaI6yotI8x4AEg9Sp1alJxhYN7or7MJRF-z8_itaJHc3WOQoZGwDn4xETulQ8GM_qmNthQ7cFyCaHUBo88ssoZVg">
+</div>
+<div class="p-4">
+<span class="text-[9px] uppercase font-bold tracking-widest text-[#558b2f] block mb-1">Không gian di sản 02</span>
+<h3 class="font-serif text-lg font-bold text-[#1f2a1b]">Mỹ Tho</h3>
+<p class="text-xs text-[#4d463e] mt-1 leading-relaxed">
+              Được xem là <strong class="text-[#1f2a1b]">cái nôi</strong> của nghệ thuật đờn ca tài tử và cải lương. Nơi đây sở hữu Rạp hát Thầy Năm Tú – rạp cải lương đầu tiên của Việt Nam và gắn liền với điểm du lịch sinh thái cù lao Thới Sơn.
+            </p>
+</div>
+</div>
+<!-- Location 3: An Giang -->
+<div class="bg-[#fffbf5] rounded-2xl overflow-hidden border border-[#eedecb] shadow-sm flex flex-col" data-purpose="location-card">
+<div class="h-44 w-full overflow-hidden">
+<img alt="An Giang Lễ hội Vía Bà Chúa Xứ" class="w-full h-full object-cover object-bottom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvcW9A5FokYsagxN0drupkOYBJ47l9oygJCOKmaPW4CzJpZs7iK6cq5Zo5IO5vhN149CNBD_G5okoYuuV6u9170ii0nqQYAX497zkqEnF4nGvVUw4r-bUFPRTTqngud-w4TGPD6f4HAZpPGRQos-f8RcLPcsk8IuQ4zSAXf6OU_SI1pZhcme1bI87W6UPuN8t4X7R38-GsE6nSVuwZhTCqe1fcFCgFO2m_DyYCmJRc_NaVY2FBg7e-ow">
+</div>
+<div class="p-4">
+<span class="text-[9px] uppercase font-bold tracking-widest text-[#f59e0b] block mb-1">Không gian di sản 03</span>
+<h3 class="font-serif text-lg font-bold text-[#1f2a1b]">An Giang</h3>
+<p class="text-xs text-[#4d463e] mt-1 leading-relaxed">
+              Điểm đến tâm linh nổi tiếng với <strong class="text-[#1f2a1b]">Lễ hội Vía Bà Chúa Xứ núi Sam</strong>, diễn ra từ ngày 22 đến 27 tháng 4 âm lịch hàng năm. Lễ hội này thu hút đông đảo khách hành hương và đã được UNESCO ghi danh là Di sản văn hóa phi vật thể.
+            </p>
+</div>
+</div>
+<!-- Location 4: Châu Đốc -->
+<div class="bg-[#fffbf5] rounded-2xl overflow-hidden border border-[#eedecb] shadow-sm flex flex-col" data-purpose="location-card">
+<div class="h-44 w-full overflow-hidden">
+<img alt="Châu Đốc diễn xướng Múa Bóng Rỗi" class="w-full h-full object-cover object-bottom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvcW9A5FokYsagxN0drupkOYBJ47l9oygJCOKmaPW4CzJpZs7iK6cq5Zo5IO5vhN149CNBD_G5okoYuuV6u9170ii0nqQYAX497zkqEnF4nGvVUw4r-bUFPRTTqngud-w4TGPD6f4HAZpPGRQos-f8RcLPcsk8IuQ4zSAXf6OU_SI1pZhcme1bI87W6UPuN8t4X7R38-GsE6nSVuwZhTCqe1fcFCgFO2m_DyYCmJRc_NaVY2FBg7e-ow">
+</div>
+<div class="p-4">
+<span class="text-[9px] uppercase font-bold tracking-widest text-[#8d6e63] block mb-1">Không gian di sản 04</span>
+<h3 class="font-serif text-lg font-bold text-[#1f2a1b]">Châu Đốc</h3>
+<p class="text-xs text-[#4d463e] mt-1 leading-relaxed">
+<strong class="text-[#1f2a1b]">Màn trình diễn đỉnh cao</strong> thuộc loại hình nghệ thuật dân gian Múa bóng rỗi, thường xuất hiện trong các dịp lễ hội tín ngưỡng truyền thống như lễ cúng Bà, thờ Mẫu hay thờ Ngũ Hành Nương Nương.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeritageMapLocations -->
+<!-- BEGIN: MissVanHoaSection -->
+<section class="py-12 px-4 bg-[#1f1a17] text-white" data-purpose="miss-culture-showcase" id="miss-van-hoa">
+<div class="max-w-md mx-auto text-center mb-6">
+<p class="text-[10px] uppercase tracking-widest text-[#f48fb1] font-semibold">Miss Văn Hóa</p>
+<h2 class="font-serif italic text-2xl font-bold text-[#ffd54f] mt-1">“ Hương Sắc ”</h2>
+<p class="text-xs text-[#c4b9b0] mt-1.5 leading-tight">
+          Nét vẻ đẹp thanh tân của <span class="text-white font-medium">người con gái Nam Bộ</span> hòa mình vào 4 loại nghệ thuật kinh điển
+        </p>
+</div>
+<!-- 8 Contestants / Cultural Ambassadors in 2-Column Mobile Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
+<!-- Contestant 1 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Nguyễn Phương Anh" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs9RB1JRw5nMdOwj14tIlRaFou3UtCEAgazyOa7PbZbPJpblzmabqB7HIH0EpnBrvE88ngElsqQ5IYDsKEec8W-HIodBh8yxll35TWomC17uv48W1PovxvPWEgSWEqyegVBZpQNUK_-5G8Nuq-d8iBSPWvJVJSntcKNOaYmmwARtSpmlzjIC3YrP3t_usJ86C_VJclaccgLMkqQUx9LwQ_dR9IeyUI9_0rAdJgUtaayKpfmR4syJYyOQ">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Nguyễn Phương Anh</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 074 - Cà Mau</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Gìn giữ câu hò, điệu lý phương nam trong nét duyên Nam Bộ qua hình ảnh người con gái thanh tân."</p>
+</div>
+</div>
+<!-- Contestant 2 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Nguyễn Thục Anh" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWFAksrsICzh5XcfNNGOBeaPgcziCyN0LDPyaZ_59Ga3MjThy6-HI6nGjXPqGjVdw1tbOMcAFggevMtQdg0axKYIlPGNckf9dyGjjV5h0UlCZxFYfVpASa7BSKsS1_-PyzoEcwFDQdUy69mJb18IilHlOpZKdEifQRoPwE4lU31qDXvKEyB2Jb_XEP950jKt5jCl0QAaZ6J23F-TIsgGOxg1WValFHeCp7qNADRVIuwBNUohie9VqKlg">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Nguyễn Thục Anh</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 092 - Bến Tre</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Điểm xao lòng nhịp đờn kìm, nguyên nét nét văn hóa phương Nam tỏa sáng rạng ngời."</p>
+</div>
+</div>
+<!-- Contestant 3 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Phạm Phương Chi" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDII-rTsfbVB0X5pwemM0tFc21IqTMZIwpbm-7e_9GyS5Ojz0Nub_3o9u-aEr5AxkZkpVqMmqmB2zr_AX9SVNJmOU-PfpMSrCHYWGChh6q8GgBN5DVI9XMET-KsBs2Jjj3Gq-OdZNatGSE92JH-xOw6s-SC9bSwe8AeaR_lK5nYFbwDi4gxB6rBVYAwtT3Q-FcVczxsa1Zn-3Ij1auQHXZ0wjtTuvGFU-aN02nucU6hFtudF4B1yEE2gw">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Phạm Phương Chi</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 018 - Tiền Giang</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Vẻ đẹp thanh tao bên mâm vàng nghệ thuật, lan tỏa tình yêu di sản trong thời đại số."</p>
+</div>
+</div>
+<!-- Contestant 4 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Bảo Hằng" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9Now5cGTHribYObE2LY7uFhu3BlvvnoHHa_QExVjRTEsPCJiaHLrnGXwbY5bcaE99LdekbAMyId04wXSszkG2X5dxlMrQHP7r-diaeFVZt5lS-tLwwB5GQDYIjEhceOZGaD6bj3XWeprir-fHEm8S-acEXeoHY6cP778LTSXAeK9rrhY3G2iELld2Q6_e-ItpenLZDY1DHwPTNeH2PMqNNUdPehNx7R2y_AEMEtollU8gZ9c75orLMw">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Bảo Hằng</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 005 - Cần Thơ</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Khí phách trượng phu tuồng cổ giao hòa cùng vẻ đẹp nữ tính hiện đại."</p>
+</div>
+</div>
+<!-- Contestant 5 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Nguyễn Gia Hân" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0uF8QHlJJ7KFxCrDmqjo9slkYk3Fhgpfon7JNt20HjDZdk37pi3Bk9shUXpQjFvL-549cuCbnlyUf8e_EqsbdRzgcBygw_FlrVdI7PBQGFlhWn97BHbWm-b9Z0znnU5V7tAGbfr3ZkPzoJs0z9Y-NpwTmmGE5uemq7boZqKwPXpn-2EdHMhZs7dEXuDuqdvhE9w0PDGhu2Vlp1vUI7oB41g5fsiRFbZtufbZDxvuz99hAmobRAOtylQ">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Nguyễn Gia Hân</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 026 - Sóc Trăng</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Gửi trọn tấm lòng tôn kính vào từng câu vọng cổ mang trọn hồn cốt quê hương."</p>
+</div>
+</div>
+<!-- Contestant 6 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Phương Uyên" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAYgE6wIyS5C6qRCzjhaHPom9Uqdzdy2Xobkw8pFcdBngy8iRNsg_7rmRaPvc4zkWb0Uwq2gKczauiICqpiFcs99QcWP29UB04kO-TZfHE_qFmVDbfI8uafDauj3Qp4dXyfSVtnw02tqk87ICVd5pk2smJ8bsURMcSn7XLe8wPmG5zf69lZG4wFwp3la8H7DN83F-R3ufIp4ff12gJ50TJRiPYURvxN9ZIZisjr83TkyNYdKUlgZbXfQ">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Phương Uyên</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 052 - Đồng Tháp</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Tiếp nối nhịp thở ngàn xưa qua tiếng đàn tranh réo rắt bên mạn thuyền chiều."</p>
+</div>
+</div>
+<!-- Contestant 7 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Nguyễn Quỳnh Anh" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY0jLZY7EYoZZdk9GfnSupoOKTJqmNJIy25sIw9gvBqdWJiSHX7LfJDzMcTe--whPyPNpWJZ9MWA6Iq3MQgrG1ri60crqsYVa8QDsn9njdOtPpdYM4S5FaOdvUI5t_rS3OQOjK7xRbaiR6IwGQq09mv0XxYz5F3LL25tWScjeH5QV5bgeOnod_kC0wsQ8XYrX-ccB7uQ7y06PXzwmidKCBluM6YTmg91gA-mqIoREIr_embb-xVEy0wg">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Nguyễn Quỳnh Anh</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 063 - TP. Hồ Chí Minh</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Khúc vọng ngân vang đưa tinh hoa Nam Bộ chạm vào trái tim thế hệ trẻ hôm nay."</p>
+</div>
+</div>
+<!-- Contestant 8 -->
+<div class="bg-[#2b2420] border border-[#3e342f] rounded-xl p-3 flex gap-3 items-center shadow-xs">
+<img alt="Phạm Ngọc Anh" class="w-14 h-14 rounded-full object-cover border border-[#e83e8c] flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkfmIH4X5RNVbO9Yi8ZouhTdEsxG9Yl3LVaqBDIyCu_DdCtJlDEtQjY6Tz4_xGLNv2EG9vFLcjdF3qLd91PUVw5jaAO-h3oadTYwIjejYlXSgWXD7y186WMdVeqGsjhoxDK-hLSSO7LKFh80vTBOwh9uuI78PX8Me6jTacGuw5xnaMCiBPsDcre-rD2ph_yYiM3onTWa5nNWxMAwfXuegk7tUkct_JwqaTneVFIa8kYByM5Vnfc9w9GQ">
+<div>
+<h3 class="text-xs font-bold text-[#ffe0b2]">Phạm Ngọc Anh</h3>
+<p class="text-[10px] text-[#8bc34a] font-medium">SBD: 088 - TP. Hồ Chí Minh</p>
+<p class="text-[10px] text-[#cfc2b6] mt-0.5 italic line-clamp-2">"Mang nét son nét vẽ tuồng cổ hòa cùng nhiệt huyết tuổi trẻ gìn giữ di sản dân tộc."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MissVanHoaSection -->
+<!-- BEGIN: SocialWallAndMiniGame -->
+<section class="py-12 px-4 bg-gradient-to-b from-[#fff7f0] to-[#feeddf]" data-purpose="social-minigame-box" id="mini-game">
+<div class="max-w-md mx-auto text-center">
+<h2 class="font-serif text-xl font-bold text-[#2e261f]">Social Wall &amp; Minigame Nhận phẩm</h2>
+<p class="text-xs text-[#6e5f52] mt-1">Cùng gửi trò viral kèm các hashtag</p>
+<p class="text-xs font-bold text-[#e83e8c] mt-0.5">#MinhOiVeNghe, #ThanhSacNamBo và <span class="text-[#558b2f]">bốc thẻ bài</span> dự nhận phẩm may mắn hôm nay!</p>
+<!-- Signature Pink Card Box -->
+<div class="mt-6 bg-gradient-to-br from-[#e83e8c] via-[#d81b60] to-[#ad1457] text-white rounded-3xl p-6 shadow-floating border border-pink-400/40 relative overflow-hidden">
+<!-- Background decorative circles -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+<h3 class="font-serif italic text-xl font-bold text-[#ffe082]">Dự án " Mình ơi Về nghe "</h3>
+<p class="text-xs text-pink-100 mt-2 leading-relaxed">
+            Dự án nghiên cứu và sáng tạo truyền thông văn hóa nghệ thuật truyền thống Nam Bộ, kết nối di sản ngàn đời với nhịp đập đương đại của thế hệ trẻ.
+          </p>
+<div class="mt-3 pt-3 border-t border-white/20">
+<p class="text-[11px] font-semibold text-white/90">
+              Đơn vị thực hiện: Nhóm 2 – POHE Quản trị Lữ hành 67
+            </p>
+</div>
+<!-- Social Media Actions -->
+<div class="mt-5">
+<p class="text-xs font-bold uppercase tracking-wider text-[#ffecb3] mb-3">Kết nối Mạng xã hội</p>
+<div class="flex flex-col sm:flex-row gap-2 justify-center">
+<a class="inline-flex items-center justify-center gap-2 py-2 px-4 bg-white text-[#1877f2] hover:bg-slate-50 rounded-full text-xs font-bold shadow-sm transition active:scale-95" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+<span>Mình ơi Về nghe</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 py-2 px-4 bg-black text-white hover:bg-neutral-800 rounded-full text-xs font-bold shadow-sm transition active:scale-95" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.77 1.81-.03 3.28-1.54 3.32-3.35.03-3.04.01-6.09.01-9.14 0-3.05-.01-6.1.01-9.15z"></path>
+</svg>
+<span>minhoi.ve.nghe</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SocialWallAndMiniGame -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="bg-[#181a17] text-[#a49a8f] py-6 px-4 text-center border-t border-[#2e2f2b]" data-purpose="site-footer">
+<div class="max-w-md mx-auto">
+<img alt="Mình ơi Về nghe" class="h-8 w-auto mx-auto mb-2 opacity-80 filter brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCddaWFXC18S_-DMr_ZdbD9P4yY_ZOQgp7crzlVnSp1Gde1ngJSzyx3eoxmKGE0pqLVtcYU-FfHrTQlVaztjTDxPejF74C-c_67tLisDPArYmMBfFdk_IAP4JggWZ3-jLAK_4J1njrjgLBGmARqoOD42lfhSnVNwZaU83ir7Nr_uGyrEFd63e-is9jwUvJ-Rjxf50VlZC3EPob5f5sSgYcnj3s8sXrJf2elGYseHHOqtGcNANiM_UccWQ">
+<p class="text-[11px] text-[#8d8276] leading-relaxed">
+        © 2026 Dự án Văn Hóa Thanh Sắc "Mình ơi Về nghe". Bảo lưu mọi quyền.
+      </p>
+<p class="text-[10px] text-[#6d645a] mt-1">
+        POHE Quản trị Lữ hành 67 - Đại học Kinh tế Quốc dân (NEU)
+      </p>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="mobile-navbar-toggle">
+    // Toggle Mobile Navigation Drawer
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileNavMenu = document.getElementById('mobile-nav-menu');
+    const menuIconBars = document.getElementById('menu-icon-bars');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (menuToggleBtn && mobileNavMenu) {
+      menuToggleBtn.addEventListener('click', () => {
+        const isHidden = mobileNavMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileNavMenu.classList.remove('hidden');
+          menuIconBars.classList.add('hidden');
+          menuIconClose.classList.remove('hidden');
+        } else {
+          mobileNavMenu.classList.add('hidden');
+          menuIconBars.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        }
+      });
+
+      // Auto close menu when clicking on any menu link
+      mobileNavMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNavMenu.classList.add('hidden');
+          menuIconBars.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+<script data-purpose="smooth-scrolling-and-touch">
+    // Enhanced touch feedback for mobile card flipping
+    document.querySelectorAll('.card-inner').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.classList.toggle('is-flipped');
+        }
+      });
+      // Ensure accessibility focus
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', 'Lật thẻ bài để xem chi tiết');
+    });
+  </script>
+<!-- END: InteractiveScripts -->
+
+
+
+
+</body></html>

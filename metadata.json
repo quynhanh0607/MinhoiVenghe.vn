@@ -1,0 +1,6 @@
+{
+  "name": "Mình ơi Về nghe",
+  "description": "Dự án Văn hóa Thanh Sắc Nam Bộ – Hành trình lan tỏa vẻ đẹp Đờn ca tài tử, Vọng cổ, Múa bóng rỗi và Hát bội của sinh viên POHE Quản trị Lữ hành, Đại học Kinh tế Quốc dân.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

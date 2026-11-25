@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", "EB Garamond", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+
+  --color-brand-cream: #fffaf3;
+  --color-brand-dark-bg: #212b1d;
+  --color-brand-charcoal: #1c1b18;
+  --color-brand-pink: #e83e8c;
+  --color-brand-pink-hover: #d62a78;
+  --color-brand-green: #558b2f;
+  --color-brand-light-green: #a9cf46;
+  --color-brand-gold: #f59e0b;
+  --color-brand-amber: #f2bd1d;
+  --color-brand-brown: #4e342e;
+  --color-brand-deep-brown: #362214;
+
+  --shadow-card: 0 10px 26px -5px rgba(59, 47, 0, 0.14);
+  --shadow-floating: 0 16px 36px -8px rgba(175, 23, 101, 0.28);
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 76px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fff9f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c8b698;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a58f6d;
+  }
+}
+
+/* 3D Flip Card Mechanics */
+.perspective-1000 {
+  perspective: 1100px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.card-inner {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/*
+ * Exact pixel-accurate crop for the 4 uploaded 2000x2000 PNG collectible cards
+ * (inner artwork bounding box: x=452..1600, y=172..1828, size=1148x1656).
+ * Adding a 0.6% bleed trims the outer 1px anti-aliased white halo cleanly.
+ */
+.card-artwork-crop {
+  position: absolute;
+  width: 175.8%;
+  height: 121.8%;
+  max-width: none;
+  left: -39.9%;
+  top: -10.8%;
+  object-fit: fill;
+}
+
+/* Subtle traditional Nam Bộ silk-weave backdrop accents */
+.bg-khan-ran-subtle {
+  background-image:
+    linear-gradient(45deg, rgba(247, 216, 139, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(247, 216, 139, 0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(247, 216, 139, 0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(247, 216, 139, 0.04) 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    transition-duration: 0.01ms !important;
+  }
+}
